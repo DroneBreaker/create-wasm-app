@@ -1,3 +1,12 @@
-import * as wasm from "wasm-game";
+import { Universe } from "wasm-game";
 
-wasm.greet();
+const pre =  document.getElementById('game-canvas');
+const universe = Universe.new();
+
+const renderLoop = () => {
+    pre.textContent = universe.render()
+    universe.tick();
+    requestAnimationFrame(renderLoop);
+}
+
+requestAnimationFrame(renderLoop);
